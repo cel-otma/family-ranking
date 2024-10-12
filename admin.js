@@ -117,63 +117,80 @@ function saveRanking() {
 }
 
 function exportToExcel() {
-    // Create a new workbook
-    const workbook = XLSX.utils.book_new();
+    console.log("Début de l'exportation vers Excel");
+    try {
+        // Vérifier si XLSX est défini
+        if (typeof XLSX === 'undefined') {
+            throw new Error("La bibliothèque XLSX n'est pas chargée");
+        }
 
-    // Create a worksheet
-    const ws_data = [
-        ["Member Information"],
-        [],  // Empty row for spacing
-        ["الأعضاء", "اجتماعات عموم أعضاء (40%)", "اجتماعات اللجان (15%)", "تحضير أنشطة (15%)", "تنزيل نشاط (20%)", "السلوك (10%)",, "Total Score"]
-    ];
+        // Create a new workbook
+        const workbook = XLSX.utils.book_new();
 
-    // Add member data
-    members.forEach(member => {
-        const totalScore = (
-            member.contribution * 0.4 +
-            member.engagement * 0.15 +
-            member.performance * 0.15 +
-            member.reputation * 0.2 +
-            member.comportement * 0.1
-        ).toFixed(2);
+        // Create a worksheet
+        const ws_data = [
+            ["Member Information"],
+            [],  // Empty row for spacing
+            ["الأعضاء", "اجتماعات عموم أعضاء (40%)", "اجتماعات اللجان (15%)", "تحضير أنشطة (15%)", "تنزيل نشاط (20%)", "السلوك (10%)", "Total Score"]
+        ];
 
-        ws_data.push([
-            member.name,
-            member.contribution,
-            member.engagement,
-            member.performance,
-            member.reputation,
-            member.comportement,
-            totalScore
-        ]);
-    });
+        // Add member data
+        members.forEach(member => {
+            const totalScore = (
+                member.contribution * 0.4 +
+                member.engagement * 0.15 +
+                member.performance * 0.15 +
+                member.reputation * 0.2 +
+                member.comportement * 0.1
+            ).toFixed(2);
 
-    const worksheet = XLSX.utils.aoa_to_sheet(ws_data);
+            ws_data.push([
+                member.name,
+                member.contribution,
+                member.engagement,
+                member.performance,
+                member.reputation,
+                member.comportement,
+                totalScore
+            ]);
+        });
 
-    // Set column widths
-    const colWidths = [{ wch: 20 }, { wch: 20 }, { wch: 20 }, { wch: 20 }, { wch: 20 }, { wch: 20 }, { wch: 15 }];
-    worksheet['!cols'] = colWidths;
+        console.log("Données préparées pour l'export", ws_data);
 
-    // Merge cells for the title
-    worksheet['!merges'] = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 5 } }];
+        const worksheet = XLSX.utils.aoa_to_sheet(ws_data);
 
-    // Style the title
-    worksheet.A1.s = {
-        font: { bold: true, sz: 16 },
-        alignment: { horizontal: "center" }
-    };
+        // Set column widths
+        const colWidths = [{ wch: 20 }, { wch: 20 }, { wch: 20 }, { wch: 20 }, { wch: 20 }, { wch: 20 }, { wch: 15 }];
+        worksheet['!cols'] = colWidths;
 
-    // Style the header row
-    const headerStyle = { font: { bold: true }, alignment: { horizontal: "center" } };
-    ["A3", "B3", "C3", "D3", "E3", "F3", "G3"].forEach(cell => {
-        worksheet[cell].s = headerStyle;
-    });
+        // Merge cells for the title
+        worksheet['!merges'] = [{ s: { r: 0, c: 0 }, e: { r: 0, c: 6 } }];
 
-    // Add the worksheet to the workbook
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Member Information");
+        // Style the title
+        worksheet.A1.s = {
+            font: { bold: true, sz: 16 },
+            alignment: { horizontal: "center" }
+        };
 
-    // Generate the Excel file
-    XLSX.writeFile(workbook, "member_information.xlsx");
+        // Style the header row
+        const headerStyle = { font: { bold: true }, alignment: { horizontal: "center" } };
+        ["A3", "B3", "C3", "D3", "E3", "F3", "G3"].forEach(cell => {
+            worksheet[cell].s = headerStyle;
+        });
+
+        // Add the worksheet to the workbook
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Member Information");
+
+        console.log("Fichier Excel généré, tentative de téléchargement");
+
+        // Generate the Excel file
+        XLSX.writeFile(workbook, "member_information.xlsx");
+
+        console.log("Exportation terminée avec succès");
+    } catch (error) {
+        console.error("Erreur lors de l'exportation vers Excel:", error);
+        alert("Une erreur s'est produite lors de l'exportation. Veuillez vérifier la console pour plus de détails.");
+    }
 }
 
 // Load existing data from localStorage if available
