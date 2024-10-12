@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Member Ranking</title>
+    <link rel="stylesheet" href="css/admin.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="title">
+            <img src="img/logo.png" width="70px" height="70px" alt="">
+            <button class="logout-button" onclick="logout()">Logout</button>
+        </div>
+        <h1 class="title-text">Admin Panel - Member Ranking</h1>
+        <!-- Import Excel file -->
+        <div class="button-class">
+            <label for="csvFile">Choose file
+                <input type="file" id="csvFile" accept=".csv">
+            </label>
+            <button class="import-button" onclick="importCSV()">Upload</button>
+        </div>
+
+        <!-- Add single member form -->
+        <div>
+            <h2>Add Single Member</h2>
+            <form id="addMemberForm">
+                <div class="input-membres">
+                    <input class="input-values-members" type="text" id="memberName" placeholder="Member Name" required>
+                    <input class="input-values-members" type="number" id="contribution" placeholder="Contribution"
+                        required>
+                    <input class="input-values-members" type="number" id="engagement" placeholder="Engagement" required>
+                    <input class="input-values-members" type="number" id="performance" placeholder="Performance"
+                        required>
+                    <input class="input-values-members" type="number" id="reputation" placeholder="Reputation" required>
+                    <input class="input-values-members" type="number" id="comportement" placeholder="comportement" required>
+                </div>
+                <button class="button-cal" type="submit">Add Member</button>
+            </form>
+        </div>
+
+        <!-- Admin Table -->
+        <h2>Member List</h2>
+        <table id="memberTable">
+            <thead>
+                <tr>
+                    <th>الأعضاء</th>
+                    <th>اجتماعات عموم أعضاء (40%)</th>
+                    <th>اجتماعات اللجان (15%)</th>
+                    <th>تحضير أنشطة (15%)</th>
+                    <th>تنزيل نشاط (20%)</th>
+                    <th> السلوك (10%)</th>
+                </tr>
+            </thead>
+            <tbody id="memberTableBody">
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <button class="button-cal" onclick="calculateRanking()">Calculate Ranking</button>
+        <button class="button-cal" onclick="saveRanking()">Save Ranking for Members</button>
+        <button class="button-cal" onclick="exportToExcel()">Export to Excel</button>
+
+        <div id="result">
+            <h2>Ranking:</h2>
+            <ul id="rankingList"></ul>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #b6b4b9;
+}
+input {
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  position: relative;
+  width: 80%;
+  background-color: #b6b4b9;
+  min-height: 100vh;
+  overflow: hidden;
+  margin: auto;
+}
+.title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+.logout-button {
+  width: 115px;
+  background-color: #6c3c3d;
+  border: none;
+  outline: none;
+  height: 40px;
+  border-radius: 30px;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.title-text {
+  font-size: 2.2rem;
+  color: #444;
+  margin-bottom: 10px;
+  text-align: center;
+}
+#result {
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#result h2 {
+  color: #333;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+#rankingList {
+  list-style-type: none;
+  padding: 0;
+}
+
+#rankingList li {
+  background-color: #fff;
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+#rankingList li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* #rankingList li::before {
+    content: counter(item) ". ";
+    counter-increment: item;
+    font-weight: bold;
+    margin-right: 10px;
+    color: #4a4a4a;
+    font-size: 1.2em;
+  } */
+
+#rankingList li:nth-child(1) {
+  background-color: #ffd700;
+  font-weight: bold;
+}
+
+#rankingList li:nth-child(2) {
+  background-color: #c0c0c0;
+}
+
+#rankingList li:nth-child(3) {
+  background-color: #cd7f32;
+}
+
+@media screen and (max-width: 480px) {
+  #result {
+    padding: 10px;
+  }
+
+  #rankingList li {
+    padding: 10px;
+  }
+}
