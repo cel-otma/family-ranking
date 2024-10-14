@@ -163,7 +163,7 @@ label[for="csvFile"]:hover {
 /* Responsive design pour les petits écrans */
 @media screen and (max-width: 600px) {
   #memberTable {
-      font-size: 14px;
+      font-size: 12px;
   }
   
   #memberTable th, #memberTable td {
