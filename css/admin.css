@@ -167,7 +167,7 @@ label[for="csvFile"]:hover {
   }
   
   #memberTable th, #memberTable td {
-      padding: 8px;
+      padding: 5px;
   }
 }
 #result {
