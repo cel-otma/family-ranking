@@ -105,7 +105,7 @@ label[for="csvFile"]:hover {
   background-color: #620e00; /* Blue background */
   border: none;
   color: white;
-  padding: 7px 7px;
+  padding: 10px 7px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -168,6 +168,12 @@ label[for="csvFile"]:hover {
   
   #memberTable th, #memberTable td {
       padding: 5px;
+  }
+  .button-cal{
+    width: 100%;
+  }
+  #addMemberForm{
+    display: block !important;
   }
 }
 #result {
