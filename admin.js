@@ -80,8 +80,8 @@ document
 function calculateRanking() {
   // Weights for the factors
   const weights = {
-    contribution: 0.4,
-    engagement: 0.15,
+    contribution: 0.35,
+    engagement: 0.20,
     performance: 0.15,
     reputation: 0.2,
     comportement: 0.1,
@@ -152,8 +152,8 @@ function exportToExcel() {
       [], // Empty row for spacing
       [
         "الأعضاء",
-        "اجتماعات عموم أعضاء (40%)",
-        "اجتماعات اللجان (15%)",
+        "اجتماعات عموم أعضاء (35%)",
+        "اجتماعات اللجان (20%)",
         "تحضير أنشطة (15%)",
         "تنزيل نشاط (20%)",
         "السلوك (10%)",
@@ -164,8 +164,8 @@ function exportToExcel() {
     // Add member data
     members.forEach((member) => {
       const totalScore = (
-        member.contribution * 0.4 +
-        member.engagement * 0.15 +
+        member.contribution * 0.35 +
+        member.engagement * 0.20 +
         member.performance * 0.15 +
         member.reputation * 0.2 +
         member.comportement * 0.1
